@@ -12,8 +12,9 @@ Dataset link:
 https://data.world/datasets/depression
 https://catalog.data.gov/dataset/indicators-of-anxiety-or-depression-based-on-reported-frequency-of-symptoms-during-last-7-
 https://catalog.data.gov/dataset/indicators-of-anxiety-or-depression-based-on-reported-frequency-of-symptoms-during-last-7-/resource/fd15ea5e-2966-480d-aaf3-30bb372f8ba3
+
 Conclusions from the articles:
 
-Globally, older individuals (in the 70 years and older age bracket) have a higher risk of depression relative to other age groups.
-In United States, the median estimate for the prevalence of depression is higher for women than for men.
-Sleeping problems and low energy are the most common symptoms in people diagnosed with moderate or severe depression.
+1) Globally, older individuals (in the 70 years and older age bracket) have a higher risk of depression relative to other age groups.
+2) In United States, the median estimate for the prevalence of depression is higher for women than for men.
+3) Sleeping problems and low energy are the most common symptoms in people diagnosed with moderate or severe depression.
