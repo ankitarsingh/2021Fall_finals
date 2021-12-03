@@ -56,4 +56,16 @@ def country_wise_plot(df, country: str, identifier: str):
         plots = to_plot.plot(kind = 'line', figsize =(20,10))
     return plots
 
+
 country_wise_plot(df_all_age, 'Europe','Major depressive disorder')
+
+
+##Anxiety disorder and suicide rate of countries from 1990 to 2017 comparison and plotting
+
+def read_file(file_name):
+    return pd.read_csv(file_name)
+
+
+def merge_data(data1, data2, join_col_name, country_code):
+    data = pd.merge(data1[data1['Code'] == country_code], data2[data2['Code'] == country_code], left_on=join_col_name, right_on=join_col_name, how='left')
+    return data
