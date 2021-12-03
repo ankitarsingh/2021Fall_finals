@@ -5,15 +5,16 @@ import pandas as pd
 import plotly.express as px
 
 
-df = pd.read_csv("prevalence_male_females.csv")
-# plt.scatter(x, y, s=area, c=colors, alpha=0.5)
+df1 = pd.read_csv("prevalence_male_females.csv")
+df2 = pd.read_csv("IHME-GBD_2019_DATA.csv")
 
-#df.plot()  # plots all columns against index
-df.plot(kind='scatter', x='Prevalence - Depressive disorders - Sex: Female - Age: Age-standardized (Percent)', y='Prevalence - Depressive disorders - Sex: Male - Age: Age-standardized (Percent)') # scatter plot
-# df.plot(kind='scatter', x='Year', y='Population (historical estimates)') # scatter plot
-# df.plot(kind='density')  # estimate density function
-# df.plot(kind='hist')  # histogram
-plt.show()
+df1.head()
+df2.head()
+
+df1.plot(kind='scatter', x='Prevalence - Depressive disorders - Sex: Female - Age: Age-standardized (Percent)',
+        y='Prevalence - Depressive disorders - Sex: Male - Age: Age-standardized (Percent)',
+        xlabel="Prevalence in Female", ylabel="Prevalence in Male", ylim=(0,8), xlim=(0,8)) # scatter plot
+
 
 
 
