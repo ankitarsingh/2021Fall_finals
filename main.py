@@ -69,3 +69,17 @@ def read_file(file_name):
 def merge_data(data1, data2, join_col_name, country_code):
     data = pd.merge(data1[data1['Code'] == country_code], data2[data2['Code'] == country_code], left_on=join_col_name, right_on=join_col_name, how='left')
     return data
+
+def plot_graph(merge_file_data, country):
+    final_data = pd.DataFrame({
+        'year': merge_file_data['Year'],
+        'suicide_rate': merge_file_data['Deaths - Self-harm - Sex: Both - Age: All Ages (Percent)'],
+        'anxiety_rate': merge_file_data['Prevalence - Anxiety disorders - Sex: Both - Age: Age-standardized (Percent)']
+    })
+    ax = plt.gca()
+    final_data.plot(x='year', y='anxiety_rate', ax=ax)
+    final_data.plot(x='year', y='suicide_rate', ax=ax)
+    plt.xlabel('Year')
+    plt.ylabel('Percent %')
+    plt.title('country: '+country)
+    plt.show()
