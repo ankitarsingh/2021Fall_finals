@@ -83,3 +83,17 @@ def plot_graph(merge_file_data, country):
     plt.ylabel('Percent %')
     plt.title('country: '+country)
     plt.show()
+
+
+def __main__():
+    anxiety_disorder_data = read_file('share-with-anxiety-disorders.csv')
+    suicide_data = read_file('share-deaths-suicide.csv')
+
+    for x in ['USA', 'AFG']:
+        merge_file_data = merge_data(anxiety_disorder_data, suicide_data, 'Year', x)
+        print(suicide_data)
+        print(anxiety_disorder_data)
+        plot_graph(merge_file_data, x)
+
+
+__main__()
