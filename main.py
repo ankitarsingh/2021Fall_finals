@@ -1,8 +1,15 @@
+
+import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
+
+# Plotting male vs female scatter plot
 df1 = pd.read_csv("prevalence_male_females.csv")
 df2 = pd.read_csv("IHME-GBD_2019_DATA.csv")
+
+# df.dtypes
+# df.dropna()
 
 df1.head()
 df2.head()
