@@ -4,35 +4,52 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 
-# Plotting male vs female scatter plot
-df1 = pd.read_csv("prevalence_male_females.csv")
-df2 = pd.read_csv("IHME-GBD_2019_DATA.csv")
+def gender_depression_original_data():
+    """
+    Reads csv file from the article's source and another one from global health data. We replicate the scatter
+    plot in the article which shows that depression is more prevalent in females compared to males in year 2017.
+    We check the same for the second dataset using a bar plot
+    :param
+    :return:
+    >>> depression_gender('aca738')
+    'KSFO,CYYZ'
+    """
 
-# df.dtypes
-df1.dropna()
-df2.dropna()
+    df1 = pd.read_csv("prevalence_male_females.csv")
+    df1.dropna()
+    # Renaming the columns
+    df1 = df1.rename(columns={'Prevalence - Depressive disorders - Sex: Male - Age: Age-standardized (Percent)':'Male',
+                              'Prevalence - Depressive disorders - Sex: Female - Age: Age-standardized (Percent)':'Female'})
+    # Filtering the data for one year as mentioned in the article
+    df_2017 = df1[df1["Year"] == 2017]
+    df_2017.head()
+    df1[df1["Entity"] == "Afghanistan"].Continent.value_counts()
 
-# Creates a pivot table dataframe
-table = pd.pivot_table(df2, values ='val', columns =['sex_name'], aggfunc = np.sum)
-table
+    # Plotting scatterplot to check the prevalance
+    df_2017.plot(kind='scatter', x='Female', y='Male', xlabel="Prevalence in Female", ylabel="Prevalence in Male",
+                 ylim=(0, 8), xlim=(0, 8), figsize =(20, 10)) # scatter plot
 
-df1 = df1.rename(columns={'Prevalence - Depressive disorders - Sex: Male - Age: Age-standardized (Percent)':'Male', 'Prevalence - Depressive disorders - Sex: Female - Age: Age-standardized (Percent)':'Female'})
-df_2017 = df1[df1["Year"] == 2017]
-#df_2017.head()
-df1[df1["Entity"] == "Afghanistan"].Continent.value_counts()
+def gender_depression_global_data():
+    """
+    Reads csv from the global health data and then checks the depression score for male vs females by aggregating them
+    and also plotting a bar chart for the same.
+    :return:
+    """
+    df2 = pd.read_csv("IHME-GBD_2019_DATA.csv")
+    df2.dropna()
+    # Creates a pivot table dataframe
+    table = pd.pivot_table(df2, values='val', columns=['sex_name'], aggfunc=np.sum)
+    print(table)
 
-df1['Continent'].value_counts()
-df_2017.plot(kind='scatter', x='Female', y='Male', xlabel="Prevalence in Female", ylabel="Prevalence in Male", ylim=(0,8), xlim=(0,8), figsize =(20,10)) # scatter plot
+    df2_2017 = df2[df2["year"] == 2017]
+    val1 = df2_2017.groupby(['sex_name'])['val'].mean()
 
-df2_2017 = df2[df2["year"] == 2017]
-val1 = df2_2017.groupby(['sex_name'])['val'].mean()
+    df2['location_name'].unique()
 
-df2['location_name'].unique()
-
-# Bar plot
-plt.bar(val1.index, height=val1.values, color ='red', width = 0.5)
-plt.title("Depresssion based on gender")
-plt.show()
+    # Bar plot
+    plt.bar(val1.index, height=val1.values, color='red', width=0.5)
+    plt.title("Depression based on gender")
+    plt.show()
 
 # ####AGE-WISE POLOTTING#####
 df_all_age = pd.read_csv('/Users/supriyajayadevhiremath/Downloads/IHME-GBD_2019_DATA_allregion_allage/IHME-GBD_2019_DATA_allregion_allage.csv')
