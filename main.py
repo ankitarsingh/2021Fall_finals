@@ -176,5 +176,5 @@ def __main__():
         print(anxiety_disorder_data)
         plot_graph(merge_file_data, x)
 
-
-__main__()
+    gender_depression_original_data()
+    gender_depression_global_data
