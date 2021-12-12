@@ -370,8 +370,8 @@ def plot_graph(merge_file_data, country):
 def __main__():
     """ The function reads 2 dataset files and runs a loop in a modifiable list of countries using country codes i.e.
         the country codes can be added and removed from the list and the graphs for the new list will be plotted. """
-    # plot_scatter()
-    # gender_depression_global_data()
+    plot_scatter()
+    gender_depression_global_data()
 
 
     anxiety_disorder_data = read_file('share-with-anxiety-disorders.csv')
