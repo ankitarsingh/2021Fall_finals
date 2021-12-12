@@ -14,6 +14,7 @@ import seaborn as sn
 import plotly.express as px
 import plotly.graph_objects as go
 
+
 ################################ ANALYSIS 1 ############################
 def read_file(file_name):
     """
@@ -22,6 +23,7 @@ def read_file(file_name):
     :return: file
     """
     return pd.read_csv(file_name)
+
 
 # Interactive plot
 def plot_scatter(continent):
