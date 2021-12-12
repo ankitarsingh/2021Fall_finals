@@ -24,7 +24,7 @@ Conclusions provided by the articles:
 2) Globally, older individuals (in the 70 years and older age bracket) have a higher risk of depression relative to other age groups.
 3) Anxiety ddisorders and suicides are independently related to each other.
 
-
+BELOW ANALYSIS HAS BEEN PERFORMED ON JUPYTER NOTEBOOK, please use our main.ipynb file.
 **Analysis of first conclusion:**
 performed by ANKITA SINGH
 
