@@ -1,3 +1,10 @@
+# Final Project For Analysis on Depression disorders.
+# Group members: Ankita Singh, Brijesh Taunk, Supriya Jayadev Hiremath
+# Distribution of work:
+# Ankita Singh: Analysis 1
+# Supriya Jayadev Hiremath: Analysis 2
+# Brijesh Taunk: Analysis 3
+
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -7,7 +14,7 @@ import seaborn as sn
 import plotly.express as px
 import plotly.graph_objects as go
 
-
+################################ ANALYSIS 1 ############################
 def read_file(file_name):
     """
     Reads the csv
@@ -15,7 +22,6 @@ def read_file(file_name):
     :return: file
     """
     return pd.read_csv(file_name)
-
 
 # Interactive plot
 def plot_scatter():
@@ -27,12 +33,12 @@ def plot_scatter():
     df_continents = read_file("continents2.csv")
     df1.dropna()
     # Renaming the columns
-    df1 = df1.rename(columns={'Prevalence - Depressive disorders - Sex: Male - Age: Age-standardized (Percent)':'Male',
-                              'Prevalence - Depressive disorders - Sex: Female - Age: Age-standardized (Percent)':'Female'})
+    df1 = df1.rename(columns={'Prevalence - Depressive disorders - Sex: Male - Age: Age-standardized (Percent)': 'Male',
+                              'Prevalence - Depressive disorders - Sex: Female - Age: Age-standardized (Percent)': 'Female'})
     # Filtering the data for one year as mentioned in the article
     df_2017 = df1[df1["Year"] == 2017]
 
-    #Merging df_2017 with df_continents for continents correspinding to country code
+    # Merging df_2017 with df_continents for continents correspinding to country code
     result = pd.merge(df_2017, df_continents, how="left")
     result['region'] = result['region'].replace(np.nan, 'Others')
     if continent == 'All':
@@ -56,6 +62,7 @@ def plot_scatter():
                         ))
     plot1
 
+
 def gender_depression_global_data():
     """
     Reads csv from the global health data and then checks the depression score for male vs females by aggregating them
@@ -70,7 +77,7 @@ def gender_depression_global_data():
     df2_2017 = df2[df2["year"] == 2017]
     val1 = df2_2017.groupby(['sex_name'])['val'].mean()
 
-    df2['location_name'].unique() # This returns global so no scope of country wise analysis
+    df2['location_name'].unique()  # This returns global so no scope of country wise analysis
 
     # Bar plot
     plt.bar(val1.index, height=val1.values, color='red', width=0.5)
@@ -81,8 +88,8 @@ def gender_depression_global_data():
     to_plot = pd.pivot_table(df2_2017, index=['year'], values=['val'], columns=['sex'])
     plots = to_plot.plot(kind='bar', figsize=(20, 10), title='Prevalence in gender')
 
-#############################
 
+################################ ANALYSIS 2 ############################
 def age(row: pd.Series) -> str:
     """ Using the below mentioned source:
     https://www.statcan.gc.ca/en/concepts/definitions/age2 as our standard to define a certain range of
@@ -133,7 +140,8 @@ def age(row: pd.Series) -> str:
 
 
 # Reference from DATAPANE site https://docs.datapane.com/examples-and-tutorials/interactive-filters#plotly-1
-def interactive_graph(maindf: pd.DataFrame, list_to_display: list, cause_to_plot: str, region_or_category: str) -> go.Figure:
+def interactive_graph(maindf: pd.DataFrame, list_to_display: list, cause_to_plot: str,
+                      region_or_category: str) -> go.Figure:
     """
     This function takes in dataframe which has mean values for each age category
     corresponding to every mental health and for all regions present in our source dataframe
@@ -287,10 +295,9 @@ def compute(df: pd.DataFrame) -> pd.DataFrame:
 
 
 
-################################
+################################ ANALYSIS 3 ############################
 
 def merge_data(data1, data2, join_col_name, country_code):
-
     """" Merges 2 datasets using a common column i.e. country_code. Uses left join and returns a merged table """
     data = pd.merge(data1[data1['Code'] == country_code], data2[data2['Code'] == country_code], left_on=join_col_name,
                     right_on=join_col_name, how='left')
@@ -334,16 +341,18 @@ def plot_graph(merge_file_data, country):
         final_data = pd.DataFrame({
             'year': merge_file_data['Year'],
             'suicide_rate': merge_file_data['Deaths - Self-harm - Sex: Both - Age: All Ages (Percent)'],
-            'anxiety_rate': merge_file_data['Prevalence - Anxiety disorders - Sex: Both - Age: Age-standardized (Percent)']
+            'anxiety_rate': merge_file_data[
+                'Prevalence - Anxiety disorders - Sex: Both - Age: Age-standardized (Percent)']
         })
         ax = plt.gca()
         final_data.plot(x='year', y='anxiety_rate', ax=ax)
         final_data.plot(x='year', y='suicide_rate', ax=ax)
         plt.xlabel('Year')
         plt.ylabel('Percent %')
-        plt.title('Country: '+country)
+        plt.title('Country: ' + country)
         plt.show()
-        data = {'anxiety_rate': merge_file_data['Prevalence - Anxiety disorders - Sex: Both - Age: Age-standardized (Percent)'],
+        data = {'anxiety_rate': merge_file_data[
+            'Prevalence - Anxiety disorders - Sex: Both - Age: Age-standardized (Percent)'],
                 'suicide_rate': merge_file_data['Deaths - Self-harm - Sex: Both - Age: All Ages (Percent)']
                 }
         df = pd.DataFrame(data, columns=['anxiety_rate', 'suicide_rate'])
@@ -351,7 +360,7 @@ def plot_graph(merge_file_data, country):
         # Correlation plot
         corrplot_matrix = df.corr()
         sn.heatmap(corrplot_matrix, annot=True)
-        plt.title('Country: '+country)
+        plt.title('Country: ' + country)
         plt.show()
 
     except TypeError:
@@ -361,8 +370,10 @@ def plot_graph(merge_file_data, country):
 def __main__():
     """ The function reads 2 dataset files and runs a loop in a modifiable list of countries using country codes i.e.
         the country codes can be added and removed from the list and the graphs for the new list will be plotted. """
-    plot_scatter()
-    gender_depression_global_data()
+    # plot_scatter()
+    # gender_depression_global_data()
+
+
     anxiety_disorder_data = read_file('share-with-anxiety-disorders.csv')
     suicide_data = read_file('share-deaths-suicide.csv')
 
@@ -373,6 +384,81 @@ def __main__():
     print(anxiety_disorder_data.head())
     print(suicide_data)
     print(anxiety_disorder_data)
+    df_global = read_file('IHME-GBD_2019_DATA_global.csv')
+    df_five_region = read_file('IHME-GBD_2019_DATA_allregion_allage.csv')
+    df_SD_use = read_file('IHME-GBD_2019_DATA_sub_use_drug_use_all_regions.csv')
+    df_socialmedia = read_file('social media usage.csv')
+
+    print('There are {} missing values in our five region dataframe'.format(df_five_region.isna().sum().sum()))
+    print('There are {} missing values in our global dataframe'.format(df_global.isna().sum().sum()))
+
+    to_concat = [df_global, df_five_region]
+    df_noagecat = pd.concat(to_concat)
+    main_df = compute(df_noagecat)
+    df_substance_and_drug_use = compute(df_SD_use)
+    df_five_regions = compute(df_five_region)
+    list_of_countries = list(main_df['location'].unique())
+    list_of_condition = list(main_df['cause'].unique())
+    list_of_age_groups = list(main_df['age_categories'].unique())
+
+    df_depression = df_five_regions[(df_five_regions['cause'] == 'Major depressive disorder')]
+    main_df_depression = df_depression.groupby(by=['location']).agg({'val': 'mean'}).reset_index()
+
+    fig_depression = px.bar(main_df_depression, x='location', y='val',
+                            title="PREVALENCE OF DEPRESSION IN FIVE MAIN REGIONS",
+                            labels={"val": "Prevalence(c%)",
+                                    "location": "Region",
+                                    }
+                            )
+    fig_depression.show()
+
+    main_df_all = df_five_regions.groupby(by=['location']).agg({'val': 'mean'}).reset_index()
+
+    fig_all_disorders = px.bar(main_df_all, x='location', y='val',
+                               title="PREVALENCE OF MENTAL HEALTH DISORDERS IN FIVE MAIN REGIONS",
+                               labels={"val": "Prevalence(c%)",
+                                       "location": "Region",
+                                       }
+                               )
+    fig_all_disorders.show()
+
+    interactive_graph(main_df, list_of_age_groups, 'Major depressive disorder',
+                      'United States of America')
+    interactive_graph(main_df, list_of_age_groups, 'Major depressive disorder', 'Oceania')
+    interactive_graph(main_df, list_of_age_groups, 'Major depressive disorder', 'Asia')
+    interactive_graph(main_df, list_of_age_groups, 'Major depressive disorder', 'Global')
+
+    for each_country in list_of_countries:
+        for condition in list_of_condition:
+            value_df = max_val(main_df, each_country, condition)
+            country = (list(value_df['location']))
+            age_group = (list(value_df['age_categories']))
+            cause = (list(value_df['cause']))
+            max_value = (list(value_df['val']))
+            print('{} : Maximum percent of prevalance for {} condition'
+                  ' in {} agegroup is {: .2f}'.format(country[0],
+                                                      cause[0], age_group[0], max_value[0]), '\n')
+
+    interactive_graph(df_substance_and_drug_use, list_of_age_groups, 'Substance use disorders',
+                      'United States of America')
+    interactive_graph(df_substance_and_drug_use, list_of_age_groups, 'Drug use disorders', 'United States of America')
+    interactive_graph(df_substance_and_drug_use, list_of_age_groups, 'Substance use disorders',
+                      'Oceania')
+    interactive_graph(df_substance_and_drug_use, list_of_age_groups, 'Drug use disorders', 'Oceania')
+    interactive_graph(df_substance_and_drug_use, list_of_countries, 'Substance use disorders', 'youth')
+    interactive_graph(df_substance_and_drug_use, list_of_countries, 'Drug use disorders', 'youth')
+
+    df_socialmedia['date'] = pd.to_datetime(df_socialmedia['Unnamed: 0'], format='%m/%d/%y')
+    df_socialmedia['year'] = pd.DatetimeIndex(df_socialmedia['date']).year
+    df_social_media = df_socialmedia[['year', '18-29', '30-49', '50-64', '65+']]
+
+    # Referenced from https://pandas.pydata.org/docs/reference/api/pandas.melt.html
+    df_new = pd.melt(df_social_media, id_vars="year", var_name="age_groups", value_name="percent_usage")
+    df_new['percent_usage'] = df_new['percent_usage'].map(lambda x: x.rstrip('%'))
+    df_new['percent_usage'] = df_new['percent_usage'].astype(str).astype(int)
+    trend_plot = sn.relplot(data=df_new, x="year", y="percent_usage", hue="age_groups", kind="line", height=10,
+                             aspect=2)
+
 
 
 
