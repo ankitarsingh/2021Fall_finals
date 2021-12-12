@@ -18,7 +18,11 @@ def read_file(file_name):
 
 
 # Interactive plot
-def plot_scatter(continent):
+def plot_scatter():
+    """
+    Reads the csv file from 2 data sources and merges them to craete a scatter plot that can be further
+    customized according to country using drop down.
+    """
     df1 = read_file("prevalence_male_females.csv")
     df_continents = read_file("continents2.csv")
     df1.dropna()
