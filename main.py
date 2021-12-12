@@ -15,13 +15,8 @@ def read_file(file_name):
     return pd.read_csv(file_name)
 
 
-def gender_depression_original_data():
-    """
-    Reads csv file from the article's source and another one from global health data. We replicate the scatter
-    plot in the article which shows that depression is more prevalent in females compared to males in year 2017.
-    We check the same for the second dataset using a bar plot
-    """
-
+# Interactive plot
+def plot_scatter(continent):
     df1 = read_file("prevalence_male_females.csv")
     df_continents = read_file("continents2.csv")
     df1.dropna()
@@ -34,20 +29,17 @@ def gender_depression_original_data():
     #Merging df_2017 with df_continents for continents correspinding to country code
     result = pd.merge(df_2017, df_continents, how="left")
     result['region'] = result['region'].replace(np.nan, 'Others')
-
-    # Interactive plot
-    def plot_scatter(continent):
-        if continent == 'All':
-            result.plot(kind='scatter', x='Female', y='Male', ylim=(0, 8), xlim=(0, 8),
-                        figsize=(20, 10))  # scatter plot
-        else:
-            df_temp = result[result['region'] == continent]
-            df_temp.plot(kind='scatter', x='Female', y='Male', ylim=(0, 8), xlim=(0, 8),
-                         figsize=(20, 10))  # scatter plot
-        plt.xlabel('Prevelance in Female')
-        plt.ylabel('Prevelance in Male')
-        plt.title('Prevalence in gender')
-        #plt.show()
+    if continent == 'All':
+        result.plot(kind='scatter', x='Female', y='Male', ylim=(0, 8), xlim=(0, 8),
+                    figsize=(20, 10))  # scatter plot
+    else:
+        df_temp = result[result['region'] == continent]
+        df_temp.plot(kind='scatter', x='Female', y='Male', ylim=(0, 8), xlim=(0, 8),
+                     figsize=(20, 10))  # scatter plot
+    plt.xlabel('Prevelance in Female')
+    plt.ylabel('Prevelance in Male')
+    plt.title('Prevalence in gender')
+    plt.show()
 
     # Creating an interactive plot using 'interactive' function with all the necessary dropdowns
     plot1 = interactive(plot_scatter,
@@ -56,7 +48,7 @@ def gender_depression_original_data():
                             options=['All', 'Asia', 'Others', 'Europe', 'Africa', 'Oceania', 'Americas'],
                             description='Continent'
                         ))
-
+    plot1
 
 def gender_depression_global_data():
     """
@@ -85,5 +77,5 @@ def gender_depression_global_data():
 
 
 def __main__():
-    gender_depression_original_data()
+    plot_scatter()
     gender_depression_global_data()
