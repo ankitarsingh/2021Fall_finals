@@ -53,6 +53,8 @@ Our research paper states that, the share of the population with depression rang
 Analysis:
 We considered a dataset with five main regions in the world i.e Africa, America, Asia, Oceania, Europe and plotted  two different graphs one with just prevalence of major depression disorder  and another one with prevalence of all four different kinds of depressive disorders in these same five regions (as mentioned above).
 
+![image](https://user-images.githubusercontent.com/89532683/145703431-97754ee8-c92f-4b8c-913f-5e0cad5f9d62.png)
+![image](https://user-images.githubusercontent.com/89532683/145703449-f9181002-d2e8-4448-a833-e877157fb837.png)
 
 
 Inference:
