@@ -282,6 +282,94 @@ def compute(df: pd.DataFrame) -> pd.DataFrame:
     return df2
 
 
+
+################################
+
+def merge_data(data1, data2, join_col_name, country_code):
+
+    """" Merges 2 datasets using a common column i.e. country_code. Uses left join and returns a merged table """
+    data = pd.merge(data1[data1['Code'] == country_code], data2[data2['Code'] == country_code], left_on=join_col_name,
+                    right_on=join_col_name, how='left')
+    return data
+
+
+def plot_graph(merge_file_data, country):
+    """
+     Uses the merged data and builds the line graph and correlation plot of anxiety_rate and suicide_rate of every
+     country.
+     Uses 2 parameters, merge_file_data and country.
+     The function takes values from merged dataset. It gives error from the except block if any string is passed instead
+     of integer in anxiety or suicide rate value.
+
+    :param merge_file_data: pd.dataframe: source dataframe with all the countries and their anxiety rates and
+    suicide rates.
+    :param country: string input to help plot for that one country from the dataset.
+    >>> values = [[0.45059409, 4.831408829,'2001']]
+    >>> df = pd.DataFrame(values, columns = ['Deaths - Self-harm - Sex: Both - Age: All Ages (Percent)','Prevalence - Anxiety disorders - Sex: Both - Age: Age-standardized (Percent)','Year'])
+    >>> c = 'AFG'
+    >>> plot_graph(df,c)
+
+    >>> values = [['kk', 4.831408829,'2001']]
+    >>> df = pd.DataFrame(values, columns = ['Deaths - Self-harm - Sex: Both - Age: All Ages (Percent)','Prevalence - Anxiety disorders - Sex: Both - Age: Age-standardized (Percent)','Year'])
+    >>> c = 'AFG'
+    >>> plot_graph(df,c)
+    Getting string data instead of integer
+
+    >>> values = [[0.562432741, 'abc','2007']]
+    >>> df = pd.DataFrame(values, columns = ['Deaths - Self-harm - Sex: Both - Age: All Ages (Percent)', 'Prevalence - Anxiety disorders - Sex: Both - Age: Age-standardized (Percent)','Year'])
+    >>> c = 'AFG'
+    >>> plot_graph(df,c)
+    Getting string data instead of integer
+
+    >>> values = [[0.751, 2.344,'2009']]
+    >>> df = pd.DataFrame(values, columns = ['Deaths - Self-harm - Sex: Both - Age: All Ages (Percent)', 'Prevalence - Anxiety disorders - Sex: Both - Age: Age-standardized (Percent)','Year'])
+    >>> c = 'AFG'
+    >>> plot_graph(df,c)
+    """
+    try:
+        final_data = pd.DataFrame({
+            'year': merge_file_data['Year'],
+            'suicide_rate': merge_file_data['Deaths - Self-harm - Sex: Both - Age: All Ages (Percent)'],
+            'anxiety_rate': merge_file_data['Prevalence - Anxiety disorders - Sex: Both - Age: Age-standardized (Percent)']
+        })
+        ax = plt.gca()
+        final_data.plot(x='year', y='anxiety_rate', ax=ax)
+        final_data.plot(x='year', y='suicide_rate', ax=ax)
+        plt.xlabel('Year')
+        plt.ylabel('Percent %')
+        plt.title('Country: '+country)
+        plt.show()
+        data = {'anxiety_rate': merge_file_data['Prevalence - Anxiety disorders - Sex: Both - Age: Age-standardized (Percent)'],
+                'suicide_rate': merge_file_data['Deaths - Self-harm - Sex: Both - Age: All Ages (Percent)']
+                }
+        df = pd.DataFrame(data, columns=['anxiety_rate', 'suicide_rate'])
+
+        # Correlation plot
+        corrplot_matrix = df.corr()
+        sn.heatmap(corrplot_matrix, annot=True)
+        plt.title('Country: '+country)
+        plt.show()
+
+    except TypeError:
+        print('Getting string data instead of integer')
+
+
 def __main__():
+    """ The function reads 2 dataset files and runs a loop in a modifiable list of countries using country codes i.e.
+        the country codes can be added and removed from the list and the graphs for the new list will be plotted. """
     plot_scatter()
     gender_depression_global_data()
+    anxiety_disorder_data = read_file('share-with-anxiety-disorders.csv')
+    suicide_data = read_file('share-deaths-suicide.csv')
+
+    for x in ['USA', 'AFG', 'ALB', 'DZA', 'ASM', 'AND', 'AGO', 'ATG', 'ARG', 'ARM', 'AUS', 'AUT', 'AZE', 'BHS', 'BHR']:
+        merge_file_data = merge_data(anxiety_disorder_data, suicide_data, 'Year', x)
+        plot_graph(merge_file_data, x)
+    print(suicide_data.head())
+    print(anxiety_disorder_data.head())
+    print(suicide_data)
+    print(anxiety_disorder_data)
+
+
+
+__main__()
