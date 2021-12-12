@@ -1,5 +1,5 @@
 # Final Project For Analysis on Depression disorders.
-# Group members: Ankita Singh, Brijesh Taunk, Supriya Jayadev Hiremath
+# Group members: Ankita Singh(arsingh3), Brijesh Taunk(btaunk2), Supriya Jayadev Hiremath(sjh6)
 # Distribution of work:
 # Ankita Singh: Analysis 1
 # Supriya Jayadev Hiremath: Analysis 2
