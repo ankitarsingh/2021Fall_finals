@@ -42,8 +42,10 @@ Also, according to data.world dataset, the table clearly shows the statitics:
 
 As it can be seen from the above visualizations, the conclusion from the article that says depression is more prevalent in females is true.
 
-**ANALYSIS of 2nd conclusion to check prevalence of depression and to check if global prevalence of depression is more in people of age above**
-**performed by SUPRIYA JAYADEV HIREMATH**
+
+**ANALYSIS of 2nd conclusion to check prevalence of depression and to check if global prevalence of depression is more in people of age above.**
+
+*performed by SUPRIYA JAYADEV HIREMATH
 
 There are different kinds of depressive disorders like Persistent Depressive Disorder(Dysthymia), Bipolar Disorder, Major Depression, Anxious distress(anxiety disorder)
 (For more information about the types of depressive disorders refer https://www.webmd.com/depression/guide/depression-types)
