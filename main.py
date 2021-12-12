@@ -24,7 +24,7 @@ def read_file(file_name):
     return pd.read_csv(file_name)
 
 # Interactive plot
-def plot_scatter():
+def plot_scatter(continent):
     """
     Reads the csv file from 2 data sources and merges them to craete a scatter plot that can be further
     customized according to country using drop down.
