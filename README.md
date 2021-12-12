@@ -109,7 +109,7 @@ There are many lifestyle factors that lead to depression in youth like stress, s
 
 
 **Analysis of third conclusion: Global Anxiety disorder and suicide rate relation**
-** performed by BRijesh Taunk** 
+** performed by Brijesh Taunk** 
 
 Upon analyzing the line charts and correlation plots, the results showed that countries like ‘USA’ showed a mild negative correlation of -0.37 between anxiety disorder rate and suicide rate.  Afghanistan showed a strong positive correlation of 0.98 between both the variables. Albania showed a moderate positive correlation of 0.61. American Samoa showed a strong negative correlation of -0.92. Likewise, very country showed various correlations between anxiety disorder rate and suicide rate. 
 
