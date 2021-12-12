@@ -56,7 +56,6 @@ We considered a dataset with five main regions in the world i.e Africa, America,
 ![image](https://user-images.githubusercontent.com/89532683/145703431-97754ee8-c92f-4b8c-913f-5e0cad5f9d62.png)
 ![image](https://user-images.githubusercontent.com/89532683/145703449-f9181002-d2e8-4448-a833-e877157fb837.png)
 
-
 Inference:
 Average prevalence percentage ranges from 2.4 in Oceania to 5.07 in Africa considering just major depressive disorder.
 Average prevalence percentage ranges from 2.1 in Asia to 3.13 in America considering all mental health disorders.
@@ -71,6 +70,11 @@ According to the research paper, globally older individuals(in 70 years and olde
 Analysis:
 We considered our main dataset and plotted graph for four different regions: America, Oceania, Asia and one for global.
 
+![image](https://user-images.githubusercontent.com/89532683/145703542-f152df72-0458-45d3-931f-b4c87762cb43.png)
+![image](https://user-images.githubusercontent.com/89532683/145703596-4ae8c387-9a2f-40b8-8c29-be0a5768ed41.png)
+![image](https://user-images.githubusercontent.com/89532683/145703611-29cdde8a-b0b6-49dc-9510-3bb510724f21.png)
+![image](https://user-images.githubusercontent.com/89532683/145703626-9fbefee3-70ed-4e88-aa25-042077d780a7.png)
+
 Inference:
 We observed that in Asia depression in seniors (age above 70) is more prevalent when compared to youths and adults(age below 70), however trends for America and Oceania showed that depression was more prevalent in youths rather than older people.
 
@@ -81,6 +85,9 @@ We can see in our plot for global data that prevalence of depression is more in 
 
 Analysis:
 There are many lifestyle factors that lead to depression in youth like stress, social media usage, substance and drug use, poor diet etc. We have chosen social media usage and will be analysing trends in factors like substance and alcohol use, social media usage over the time in particular regions.
+
+![image](https://user-images.githubusercontent.com/89532683/145703641-3a593c3a-2a65-41b0-b4f5-daa2da15be84.png)
+
    a) Substance and Drug use as a contributor in America and Oceania.
    
    Inference:
@@ -92,7 +99,8 @@ There are many lifestyle factors that lead to depression in youth like stress, s
    Whereas in Oceania, we can say that substance and drug usage might not have been a strong contributor, there might be other factors that must have contributed      to depression in youths.
    
    b) Social Media usage as a contributor to depression in American youths.
-   
+   ![image](https://user-images.githubusercontent.com/89532683/145703652-d15276b8-3b65-4838-bbb6-b1085c0045f5.png)
+
    Inference:
    In our plot of analysis(2), we saw that the prevalence of depression in youth was highest during the time period ranging from 2006 to 2011, and here in this        analysis of social media usage by american youths, we see that trends increased with a great speed from around 12%  in 2006 to around 80 % in 2013, and after      2013 we can see that social media usage remained at around 80% usage with few occasional dips but these dips and raises after 2013 ranges between 80% to 90%.
    
